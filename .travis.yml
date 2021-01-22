@@ -12,7 +12,7 @@ after_success:
   - docker build -t roquechan/multi-nginx ./nginx
   - docker build -t roquechan/multi-server ./server
   - docker build -t roquechan/multi-worker ./worker
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push roquechan/multi-client
   - docker push roquechan/multi-nginx
   - docker push roquechan/multi-server
