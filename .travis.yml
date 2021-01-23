@@ -17,3 +17,16 @@ after_success:
   - docker push roquechan/multi-nginx
   - docker push roquechan/multi-server
   - docker push roquechan/multi-worker
+
+
+deploy:
+    provider: elasticbeanstalk
+    region: 'eu-west-2'
+    app: 'multi-docker'
+    env: 'MultiDocker-env`'
+    bucket_name: 'elasticbeanstalk-eu-west-2-583370836638'
+    bucket_path: 'multi-docker'
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
