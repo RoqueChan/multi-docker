@@ -8,22 +8,21 @@ before_install:
 script: docker run -e CI=true react npm run test
 
 after_success:
-  - docker build -t roquechan/multi-client ./client
-  - docker build -t roquechan/multi-nginx ./nginx
-  - docker build -t roquechan/multi-server ./server
-  - docker build -t roquechan/multi-worker ./worker
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push roquechan/multi-client
-  - docker push roquechan/multi-nginx
-  - docker push roquechan/multi-server
-  - docker push roquechan/multi-worker
-
+    - docker build -t roquechan/multi-client ./client
+    - docker build -t roquechan/multi-nginx ./nginx
+    - docker build -t roquechan/multi-server ./server
+    - docker build -t roquechan/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push roquechan/multi-client
+    - docker push roquechan/multi-nginx
+    - docker push roquechan/multi-server
+    - docker push roquechan/multi-worker
 
 deploy:
     provider: elasticbeanstalk
     region: 'eu-west-2'
     app: 'multi-docker'
-    env: 'MultiDocker-env`'
+    env: 'MultiDocker-env'
     bucket_name: 'elasticbeanstalk-eu-west-2-583370836638'
     bucket_path: 'multi-docker'
     on:
