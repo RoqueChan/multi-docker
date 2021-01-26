@@ -41,7 +41,7 @@ services:
       - REDIS_PORT=6379
   nginx:
     depends_on: 
-      - redis
+      - api
       - client
     restart: always
     build:
